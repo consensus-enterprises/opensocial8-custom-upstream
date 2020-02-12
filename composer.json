@@ -7,18 +7,21 @@
         {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
+        },
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
         }
     ],
     "require": {
-        "cweagans/composer-patches": "^1.0",
         "drupal/config_direct_save": "^1.0",
         "drupal/config_installer": "^1.0",
-        "drupal/core-composer-scaffold": "^8.8.1",
         "drupal/core-recommended": "^8.8",
+        "goalgorilla/open_social": "~8.0",
+        "monolog/monolog": "^1.17",
         "pantheon-systems/drupal-integrations": "^8",
         "pantheon-systems/quicksilver-pushback": "^2",
-        "php": ">=7.3.0",
-        "zaporylie/composer-drupal-optimizations": "^1.0"
+        "php": ">=7.3.0"
     },
     "require-dev": {
         "drupal/console": "^1",
@@ -27,7 +30,7 @@
     "conflict": {
         "drupal/drupal": "*"
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true,
     "autoload": {
         "classmap": [
@@ -36,12 +39,18 @@
     },
     "scripts": {},
     "extra": {
+        "installer-types": [
+            "bower-asset",
+            "npm-asset"
+        ],
         "installer-paths": {
             "web/core": [
                 "type:drupal-core"
             ],
             "web/libraries/{$name}": [
-                "type:drupal-library"
+                "type:drupal-library",
+                "type:bower-asset",
+                "type:npm-asset"
             ],
             "web/modules/contrib/{$name}": [
                 "type:drupal-module"
@@ -78,6 +87,12 @@
                 "[web-root]/INSTALL.txt": false,
                 "[web-root]/README.txt": false,
                 "[web-root]/web.config": false
+            }
+        },
+        "enable-patching": true,
+        "patches": {
+            "goalgorilla/open_social": {
+                "3113181-2: Use drupal/core-composer-scaffold instead of drupal-composer/drupal-scaffold": "https://www.drupal.org/files/issues/2020-02-12/3113181-2--use-drupal--core-composer-scaffold.patch"
             }
         }
     },

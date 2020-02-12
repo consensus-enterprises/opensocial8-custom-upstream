@@ -117,3 +117,6 @@ Thumbs.db
 
 # Ignore Composer's tmp/ folder.
 /tmp/
+
+# Ignore the libraries folder.
+/web/libraries
