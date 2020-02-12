@@ -114,3 +114,6 @@ Thumbs.db
 # SASS #
 ##########
 .sass-cache
+
+# Ignore Composer's tmp/ folder.
+/tmp/
