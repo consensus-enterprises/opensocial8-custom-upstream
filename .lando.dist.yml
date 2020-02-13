@@ -6,3 +6,5 @@ config:
   webroot: web/
   database: mariadb
   drush: ^8
+env_file:
+  - .env

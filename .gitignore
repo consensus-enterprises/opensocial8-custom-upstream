@@ -123,3 +123,4 @@ Thumbs.db
 
 # Ignore local lando settings.
 /.lando.local.yml
+/.env
