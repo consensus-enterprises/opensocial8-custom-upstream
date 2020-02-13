@@ -1,0 +1,8 @@
+name: opensocial8-custom-upstream
+recipe: drupal8
+config:
+  php: 7.3
+  via: nginx
+  webroot: web/
+  database: mariadb
+  drush: ^8
