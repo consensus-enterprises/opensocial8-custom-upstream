@@ -120,3 +120,6 @@ Thumbs.db
 
 # Ignore the libraries folder.
 /web/libraries
+
+# Ignore local lando settings.
+/.lando.local.yml
