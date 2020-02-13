@@ -37,7 +37,31 @@
             "scripts/composer/ScriptHandler.php"
         ]
     },
-    "scripts": {},
+    "scripts": {
+        "build-assets": [
+            "@prepare-for-pantheon",
+            "composer install --optimize-autoloader --no-dev"
+        ],
+        "lint": "find web/modules/custom web/themes/custom -name '*.php' -exec php -l {} \\;",
+        "code-sniff": [
+            "./vendor/bin/phpcs --standard=Drupal --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md --ignore=node_modules,bower_components,vendor ./web/modules/custom",
+            "./vendor/bin/phpcs --standard=Drupal --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md --ignore=node_modules,bower_components,vendor ./web/themes/custom",
+            "./vendor/bin/phpcs --standard=DrupalPractice --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md --ignore=node_modules,bower_components,vendor ./web/modules/custom",
+            "./vendor/bin/phpcs --standard=DrupalPractice --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md --ignore=node_modules,bower_components,vendor ./web/themes/custom"
+        ],
+        "prepare-for-pantheon": "DrupalProject\\composer\\ScriptHandler::prepareForPantheon",
+        "post-install-cmd": [
+            "@drupal-scaffold",
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ],
+        "post-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ],
+        "post-create-project-cmd": [
+            "@drupal-scaffold",
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ]
+    },
     "extra": {
         "installer-types": [
             "bower-asset",
